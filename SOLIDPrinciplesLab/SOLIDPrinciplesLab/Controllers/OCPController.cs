@@ -21,7 +21,6 @@ namespace SOLIDPrinciplesLab.Controllers
         // GET: OCP
         public ActionResult Index()
         {
-            
             return View();
         }
     }

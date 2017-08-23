@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using SOLIDPrinciplesLab.OCP_Example2;
+using SOLIDPrinciplesLab.LSP_Example1;
+using SOLIDPrinciplesLab.DIP_Example2;
 
 namespace SOLIDPrinciplesLab.Controllers
 {
@@ -41,5 +43,45 @@ namespace SOLIDPrinciplesLab.Controllers
 
             return View();
         }
+
+        // GET: NOLSPData
+        public ActionResult NOLSPData()
+        {
+            List<FileShareWebsiteAccount_NOLSP> fileShareAccount = new List<FileShareWebsiteAccount_NOLSP>();
+            fileShareAccount.Add(new FileShareWebsiteGoldAccount_NOLSP());
+            fileShareAccount.Add(new FileShareWebsitePlatinumAccount_NOLSP());
+            fileShareAccount.Add(new FileShareWebsiteTrialAccount_NOLSP());
+
+            foreach(var account in fileShareAccount)
+            {
+                account.AddtoAdditionalBenefits();
+            }
+            return View();
+        }
+
+        // GET: LSPData
+        public ActionResult LSPData()
+        {
+            List<FileShareWebsiteAccount_LSP> fileShareAccount = new List<FileShareWebsiteAccount_LSP>();
+            fileShareAccount.Add(new FileShareWebsiteGoldAccount_LSP());
+            fileShareAccount.Add(new FileShareWebsitePlatinumAccount_LSP());
+            //fileShareAccount.Add(new FileShareWebsiteTrialAccount_LSP());
+
+            foreach (var account in fileShareAccount)
+            {
+                account.AddtoAdditionalBenefits();
+            }
+            return View();
+        }
+
+        // GET: DIPData
+        public ActionResult DIPData()
+        {
+            FreeFileShareWebsite obj = new FreeFileShareWebsite(new SOLIDPrinciplesLab.DIP_Example2.EventViewerHandller());
+            obj.FileUpload("tt");
+
+            return View();
+        }
+
     }
 }
